@@ -658,6 +658,11 @@ releasable_branches: &releasable_branches
       - ui-components/main
       - 1.0-stable
 
+test_branches: &test_branches
+  branches:
+    only:
+      - pin-amplify-integration
+
 test_browsers: &test_browsers
   browser: [chrome, firefox]
 
@@ -684,7 +689,7 @@ workflows:
       - build
       - integ_setup:
           filters:
-            <<: *releasable_branches
+            <<: *test_branches
       - unit_test:
           requires:
             - build
@@ -693,7 +698,7 @@ workflows:
             - integ_setup
             - build
           filters:
-            <<: *releasable_branches
+            <<: *test_branches
           matrix:
             parameters:
               <<: *test_browsers
@@ -702,7 +707,7 @@ workflows:
             - integ_setup
             - build
           filters:
-            <<: *releasable_branches
+            <<: *test_branches
           matrix:
             parameters:
               <<: *test_browsers
@@ -711,7 +716,7 @@ workflows:
             - integ_setup
             - build
           filters:
-            <<: *releasable_branches
+            <<: *test_branches
           matrix:
             parameters:
               <<: *test_browsers
@@ -720,7 +725,7 @@ workflows:
             - integ_setup
             - build
           filters:
-            <<: *releasable_branches
+            <<: *test_branches
           matrix:
             parameters:
               <<: *test_browsers
@@ -729,7 +734,7 @@ workflows:
             - integ_setup
             - build
           filters:
-            <<: *releasable_branches
+            <<: *test_branches
           matrix:
             parameters:
               <<: *test_browsers
@@ -738,7 +743,7 @@ workflows:
             - integ_setup
             - build
           filters:
-            <<: *releasable_branches
+            <<: *test_branches
           matrix:
             parameters:
               <<: *test_browsers
@@ -747,7 +752,7 @@ workflows:
             - integ_setup
             - build
           filters:
-            <<: *releasable_branches
+            <<: *test_branches
           matrix:
             parameters:
               <<: *test_browsers
@@ -756,7 +761,7 @@ workflows:
             - integ_setup
             - build
           filters:
-            <<: *releasable_branches
+            <<: *test_branches
           matrix:
             parameters:
               <<: *test_browsers
@@ -765,7 +770,7 @@ workflows:
             - integ_setup
             - build
           filters:
-            <<: *releasable_branches
+            <<: *test_branches
           matrix:
             parameters:
               <<: *test_browsers
@@ -774,13 +779,13 @@ workflows:
             - integ_setup
             - build
           filters:
-            <<: *releasable_branches
+            <<: *test_branches
       - integ_amazon_cognito_identity_js:
           requires:
             - integ_setup
             - build
           filters:
-            <<: *releasable_branches
+            <<: *test_branches
           matrix:
             parameters:
               <<: *test_browsers
@@ -789,25 +794,25 @@ workflows:
             - integ_setup
             - build
           filters:
-            <<: *releasable_branches
+            <<: *test_branches
       - integ_rn_ios_push_notifications:
           requires:
             - integ_setup
             - build
           filters:
-            <<: *releasable_branches
+            <<: *test_branches
       - integ_rn_android_storage:
           requires:
             - integ_setup
             - build
           filters:
-            <<: *releasable_branches
+            <<: *test_branches
       - integ_datastore_auth:
           requires:
             - integ_setup
             - build
           filters:
-            <<: *releasable_branches
+            <<: *test_branches
           matrix:
             parameters:
               <<: *datastore_auth_scenarios
