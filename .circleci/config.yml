@@ -656,7 +656,7 @@ releasable_branches: &releasable_branches
       - release
       - main
       - ui-components/main
-      - pr-6530
+      - 6530-unhandled-promise/npm-preview
       - 1.0-stable
 
 test_browsers: &test_browsers
