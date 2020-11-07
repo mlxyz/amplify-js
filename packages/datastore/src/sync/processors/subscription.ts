@@ -137,9 +137,13 @@ class SubscriptionProcessor {
 
 		const validCognitoGroup = groupAuthRules.find(groupAuthRule => {
 			// validate token against groupClaim
-			const userGroups: string[] =
+			let userGroups: string[];
+			if (typeof cognitoTokenPayload[groupAuthRule.groupClaim] === 'string') {
+            			userGroups = JSON.parse(cognitoTokenPayload[groupAuthRule.groupClaim]);
+        		} else {
+			userGroups =
 				cognitoTokenPayload[groupAuthRule.groupClaim] || [];
-
+			}
 			return userGroups.find(userGroup => {
 				return groupAuthRule.groups.find(group => group === userGroup);
 			});
